@@ -1,0 +1,27 @@
+.carousel-caption {
+    text-align: center;
+    background-color: transparent;
+    bottom: 20%;
+    transform: translateY(-50%);
+  }
+  
+ 
+  
+
+  .carousel-caption .btn-transparent {
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 0;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+  }
+  
+  .carousel-caption .btn-transparent:hover {
+    color: #ffffffa6;
+    border-color: #ffffffa6;
+  }
+
+

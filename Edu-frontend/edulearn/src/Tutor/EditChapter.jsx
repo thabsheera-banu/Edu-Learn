@@ -95,7 +95,7 @@ function EditChapter() {
     },[])
   return (
     <div style={{minHeight:'100vh'}}>
-       <Theader/>
+       {/* <Theader/> */}
     
     <div className='container mt-4'>
         <div className='row'>

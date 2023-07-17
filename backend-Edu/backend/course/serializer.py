@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.fields import empty
 from . models import CourseCategory,Course, Chapter ,StudentCourseEntrollment
 
 
@@ -8,7 +9,7 @@ from . models import CourseCategory,Course, Chapter ,StudentCourseEntrollment
 class CategorySerializers(serializers.ModelSerializer):
     class Meta:
         model = CourseCategory
-        fields = ['id', 'title','detail']
+        fields = ['id', 'title','detail','total_courses']
 
 # class CourseSerializers(serializers.ModelSerializer):
 #     class Meta:
@@ -21,7 +22,7 @@ class CourseSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Course
-        fields = ['id', 'category', 'teacher', 'title', 'img', 'description', 'techs', 'course_chapters','related_videos','price']
+        fields = ['id', 'category', 'teacher', 'title', 'img', 'description', 'techs', 'course_chapters','related_videos','price','total_entrolled_students']
         depth = 1
 
     # def create(self, validated_data):
@@ -41,6 +42,13 @@ class StudentCourseEntrollSerializers(serializers.ModelSerializer):
     class Meta:
         model = StudentCourseEntrollment
         fields = ['id', 'course','student' ,'entrolled_time']
+        # depth = 1
+    def __init__(self, *args ,**kwargs):
+        super(StudentCourseEntrollSerializers,self).__init__(*args, **kwargs)
+        request = self.context.get('request')
+        self.Meta.depth = 0
+        if request and request.method == 'GET':
+            self.Meta.depth = 2
 
 class OrderSerializer(serializers.ModelSerializer):
     

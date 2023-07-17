@@ -12,11 +12,13 @@ class CourseCategory(models.Model):
 
     def __str__(self):
         return self.title
+    def total_courses(self):
+        return Course.objects.filter(category=self).count()
     
 #course
 
 class Course(models.Model):
-    category = models.ForeignKey(CourseCategory, on_delete=models.CASCADE)
+    category = models.ForeignKey(CourseCategory, on_delete=models.CASCADE ,related_name='category_course')
     teacher=models.ForeignKey(Teacher,on_delete=models.CASCADE)
     title=models.CharField(max_length=100)
     img=models.ImageField(upload_to='course_image/',null=True)
@@ -33,6 +35,10 @@ class Course(models.Model):
     def related_videos(self):
         related_videos =Course.objects.filter(techs__icontains = self.techs)
         return serializers.serialize('json',related_videos)
+    
+    def total_entrolled_students(self):
+        total_entrolled_students = StudentCourseEntrollment.objects.filter(course = self).count()
+        return total_entrolled_students
 
 # chapters
 
@@ -54,3 +60,4 @@ class StudentCourseEntrollment(models.Model):
     isPaid = models.BooleanField(default=False)
     is_completed = models.BooleanField(default=False)
     entrolled_time = models.DateTimeField(auto_now_add=True )
+

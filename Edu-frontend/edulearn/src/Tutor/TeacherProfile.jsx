@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 function TeacherProfile() {
     const Navigate = useNavigate()
+    const [errors,setErrors] = useState('')
     const [teacherData,setteacherData] = useState({
         'full_name' :'',
         'email' : '',
@@ -73,6 +74,44 @@ function TeacherProfile() {
 
 
     },[])
+
+    const validateForm = () => {
+      const errors = {};
+  
+      if (!teacherData.full_name) {
+        errors.full_name = 'Name is required';
+      }
+  
+      
+  
+      if (!teacherData.qualification) {
+        errors.qualification = 'Qualification is required';
+      }
+  
+      // if (!teacherData.mobile_no) {
+      //   errors.mobile_no = 'Mobile number is required';
+      // } else if (!isValidMobileNumber(teacherData.mobile_no)) {
+      //   errors.mobile_no = 'Invalid mobile number format';
+      // }
+  
+      if (!teacherData.skills) {
+        errors.skills = 'Skills are required';
+      }
+  
+      setErrors(errors);
+  
+      return Object.keys(errors).length === 0;
+    };
+  
+    const isValidEmail = (email) => {
+      // Email validation logic here
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    };
+  
+    const isValidMobileNumber = (mobileNo) => {
+      // Mobile number validation logic here
+      return /^[0-9]{10}$/.test(mobileNo);
+    };
     
 
     const handleChange =(event)=>{
@@ -89,6 +128,11 @@ function TeacherProfile() {
         });
     }
     const handleSubmit = ((event)=>{
+      event.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
       const teacherFormData = new FormData();
       teacherFormData.append("full_name", teacherData.full_name)
       teacherFormData.append("email", teacherData.email)
@@ -147,7 +191,7 @@ function TeacherProfile() {
 
   return (
     <div className={classes.root}>
-      <Theader />
+      {/* <Theader /> */}
       <div className='container mt-4'>
         <Grid container spacing={3}>
           <Grid item md={3}>
@@ -196,7 +240,7 @@ function TeacherProfile() {
                 <MDBRow>
                 <div className="mb-3">
                         <label for='title' className="form-labe">Email</label>
-                        <input value={teacherData.email} onChange={handleChange} type="email" id='title' name='email' className="form-control" />
+                        <input value={teacherData.email} onChange={handleChange} type="email" id='title' name='email' className="form-control" disabled/>
                 </div>
                 </MDBRow>
                 <MDBRow>
@@ -209,15 +253,15 @@ function TeacherProfile() {
                 <div className="mb-3">
                     <label for='video' className="form-label">profile  image</label>
                     <input type="file" id='video' onChange={handleFileChange} name="profile_img" className="form-control" />
-                    {teacherData.p_img &&(
+                    {/* {teacherData.p_img &&(
                         <img src={teacherData.p_img} width="300"/>
-                    )}
+                    )} */}
                 </div>
                 </MDBRow>
                 <MDBRow>
                 <div className="mb-3">
                         <label for='title' className="form-labe">Mobile</label>
-                        <input value={teacherData.mobile_no} onChange={handleChange} type="number" id='title' name='mobile_no' className="form-control" />
+                        <input value={teacherData.mobile_no} onChange={handleChange} type="number" id='title' name='mobile_no' className="form-control" disabled />
                 </div>
                 </MDBRow>
                 <MDBRow>

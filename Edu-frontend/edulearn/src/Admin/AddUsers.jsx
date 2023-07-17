@@ -13,6 +13,7 @@ function AddUser() {
   const fetchUser = () =>{
     axios.get(BaseUrl + 'admin-api/student-list').then((res)=>{
       setStudent(res.data)
+      console.log(res.data)
 
     })
   }
@@ -53,7 +54,8 @@ function AddUser() {
               <Table sx={{ minWidth: 650 }}>
                 <TableHead>
                   <TableRow sx={{ backgroundColor: 'lightgreen' }}>
-                    <TableCell sx={{ fontWeight: 'bold' }}>#</TableCell>
+                    {/* <TableCell sx={{ fontWeight: 'bold' }}>#</TableCell> */}
+                    <TableCell sx={{ fontWeight: 'bold' }}>Id</TableCell>
                     <TableCell sx={{ fontWeight: 'bold' }}>Name</TableCell>
                     <TableCell sx={{ fontWeight: 'bold' }}>Email</TableCell>
                     <TableCell sx={{ fontWeight: 'bold' }}>Mobile</TableCell>
@@ -63,8 +65,9 @@ function AddUser() {
                 </TableHead>
                 <TableBody>
                   {student.map((stu,index) =>
-                  <TableRow key={index} sx={{ backgroundColor: 'lightblue' }}>
-                    <TableCell>{index+1}</TableCell>
+                  <TableRow key={index} sx={{ backgroundColor: '' }}>
+                    {/* <TableCell>{index+1}</TableCell> */}
+                    <TableCell>{stu.id}</TableCell>
                     <TableCell>{stu.full_name}</TableCell>
                     <TableCell>{stu.email}</TableCell>
                     <TableCell>{stu.mobile_no}</TableCell>

@@ -16,10 +16,10 @@ from .models import Teacher,Student
 class TeacherSerializers(serializers.ModelSerializer):
     class Meta:
         model = Teacher
-        fields = ['id','full_name',  'email', 'password', 'qualification','mobile_no', 'skills','profile_img']
+        fields = ['id','full_name',  'email', 'password', 'qualification','mobile_no', 'skills','profile_img','blocked']
         # extra_kwargs = {
         #     'password': {'write_only': True}
-        # }
+        # } 
         
     def create(self, validated_data):
         password = validated_data.pop("password")
@@ -35,10 +35,15 @@ from django.contrib.auth.hashers import make_password
 class StudentSerializers(serializers.ModelSerializer):
     class Meta:
         model = Student
-        fields = ['full_name', 'email', 'password', 'qualification', 'mobile_no', 'intrested_category', 'is_active','blocked']
+        fields = ['id','full_name', 'email', 'password', 'qualification', 'mobile_no', 'intrested_category','profile_img', 'is_active','blocked']
 
     def create(self, validated_data):
         password = validated_data.pop("password")
         validated_data['password'] = make_password(password)
         instance = self.Meta.model.objects.create(**validated_data)
         return instance
+
+class StudentDashboardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Student
+        fields = ['entrolled_courses']

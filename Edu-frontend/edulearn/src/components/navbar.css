@@ -1,0 +1,20 @@
+.navbar-nav .nav-link {
+    font-weight: bold;
+    color: black;
+  }
+  
+.navbar .navbar-brand{
+    color: black;
+}
+
+.navbar .nav-item{
+    color: black;
+}
+.navbar {
+    transition: background-color 0.3s ease;
+  }
+  
+.scrolled {
+  background-color: rgb(248, 245, 245);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

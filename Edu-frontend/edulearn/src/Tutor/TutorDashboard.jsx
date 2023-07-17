@@ -7,8 +7,8 @@ import {Link} from 'react-router-dom'
 
 function TutorDashboard() {
   return (
-    <div style={{minHeight:'100vh'}}>
-      <Theader/>
+    <div style={{minHeight:'100vh'}} className='mt-4'>
+      {/* <Theader/> */}
         <div className='container mt-4'>
             <div className='row'>
                 <aside className='col-md-3'>

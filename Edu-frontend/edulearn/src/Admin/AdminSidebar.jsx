@@ -9,7 +9,7 @@ function AdminSidebar() {
         <Link to="/admin/dashboard" className="list-group-item list-group-item-action">Dashboard</Link>
         <Link to="/admin/users" className="list-group-item list-group-item-action">Users</Link>
         <Link to="/admin/tutors" className="list-group-item list-group-item-action">Tutors</Link>
-        <Link to="/teacher/mystudent" className="list-group-item list-group-item-action">Category</Link>
+        <Link to="/admin/Categorylist/" className="list-group-item list-group-item-action">Category</Link>
         <p className="list-group-item list-group-item-action text-danger btn">Log Out</p>
       </div>
     </div>

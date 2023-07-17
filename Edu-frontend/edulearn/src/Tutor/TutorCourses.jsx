@@ -40,7 +40,7 @@ function TutorCourses() {
 
   return (
     <div style={{minHeight:'100vh'}}>
-        <Theader/>
+        {/* <Theader/> */}
         <div className='container mt-4'>
         <div className='row'>
         <aside className='col-md-3'>
@@ -72,7 +72,7 @@ function TutorCourses() {
                     <tr key={index+1} onClick={() => setActive(course)} className={`table-${active == course && 'active'}`}>
                       <th>{index+1}</th>
                         <th scope="row"><Link to={'/tutor/all-chapters/'+ course.id}>{course.title}</Link></th>
-                        <td>234</td>
+                        <td>{course.total_entrolled_students}</td>
                         
                         <td><img src={course.img} width='80' className='rounded' /></td>
                         <td>

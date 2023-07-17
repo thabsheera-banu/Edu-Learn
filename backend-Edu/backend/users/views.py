@@ -4,21 +4,6 @@
 # from . serializers import TeacherSerializers
 # from rest_framework.response import Response
 from rest_framework import generics 
-# from django.http import JsonResponse
-# from django.views.decorators.csrf import csrf_exempt
-# from django.contrib.auth import authenticate, login
-# from rest_framework import status
-# from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
-# from rest_framework.exceptions import AuthenticationFailed
-
-
-# from django.views.decorators.csrf import csrf_exempt
-# from rest_framework.exceptions import AuthenticationFailed
-# from rest_framework.response import Response
-# from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
-# from .models import Teacher
-# from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-# from rest_framework_simplejwt.views import TokenObtainPairView
 
 
 # Create your views here.
@@ -103,7 +88,7 @@ from rest_framework import generics
 
 
 from rest_framework.views import APIView
-from .serializers import TeacherSerializers,StudentSerializers
+from .serializers import TeacherSerializers,StudentSerializers,StudentDashboardSerializer
 from rest_framework.response import Response
 from .models import Teacher, Student
 from rest_framework.exceptions import AuthenticationFailed
@@ -155,6 +140,8 @@ class TeacherLoginView(APIView):
 
         if user is None:
             raise AuthenticationFailed("User does not exist")
+        # if user.blocked:
+        #     raise AuthenticationFailed("Account is blocked")
         if not user.check_password(password):
             raise AuthenticationFailed("Incorrect Password")
         if user.is_active:
@@ -163,7 +150,8 @@ class TeacherLoginView(APIView):
             return Response({
                 "access_token" : access_token,
                 "refresh_token" : refresh_token,
-                "teacher_id":user.id
+                "teacher_id":user.id,
+                "teacherloginStatus" : 'true',
             })
         else:
             raise AuthenticationFailed("You are blocked")
@@ -268,6 +256,8 @@ class StudentLoginView(APIView):
             user = Student.objects.get(email=email)
         except Student.DoesNotExist:
             raise AuthenticationFailed("Account does not exist")
+        if user.blocked:
+            raise AuthenticationFailed("Account is blocked")
 
         self.check_password(user, password)  # Call the check_password function
 
@@ -276,6 +266,12 @@ class StudentLoginView(APIView):
         return Response({
             "studentLoginstatus" : True,
             "student_id" :user.id,
+            "student" :user.full_name,
             "access_token": access_token,
             "refresh_token": refresh_token
         })
+
+
+class StudentDashboard(generics.RetrieveAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentDashboardSerializer

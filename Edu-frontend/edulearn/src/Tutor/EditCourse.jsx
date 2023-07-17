@@ -17,6 +17,7 @@ function EditCource() {
         pre_img : '',
         img :'',
         description : '',
+        price : '',
         techs : ''
 
 
@@ -45,6 +46,7 @@ function EditCource() {
                     pre_img : res.data.img,
                     img : '',
                     description : res.data.description,
+                    price :res.data.price,
                     techs : res.data.techs
 
 
@@ -84,6 +86,8 @@ function EditCource() {
           _formData.append('img',courseData.img,courseData.img.name);
         } 
         _formData.append('description',courseData.description);
+        _formData.append('price',courseData.price);
+
         _formData.append('techs',courseData.techs);
         try{
             axios.put(BaseUrl + 'course/teacher-cource-detail/' + course_id, _formData ,{
@@ -120,7 +124,7 @@ function EditCource() {
     }
   return (
     <div style={{minHeight:'100vh'}}>
-        <Theader/>
+        {/* <Theader/> */}
     
     <div className='container mt-4'>
         <div className='row'>
@@ -157,6 +161,10 @@ function EditCource() {
                                 {courseData.pre_img &&(
                                     <img src={courseData.pre_img} width="300"/>
                                 )}
+                            </div>
+                            <div className="mb-3">
+                                <label for='price' className="form-labe">Price</label>
+                                <input value={courseData.price} type="number"id='price' onChange={handleChange} name='price' className="form-control" />
                             </div>
                             <div className="mb-3">
                                 <label for='techs' className="form-label">Technologies</label>

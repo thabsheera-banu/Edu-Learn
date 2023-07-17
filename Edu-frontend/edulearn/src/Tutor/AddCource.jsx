@@ -10,11 +10,13 @@ import { useParams } from 'react-router'
 function AddCource() {
     
     const [cate, setCategory] = useState([])
+
     const [courseData, setCoueseData] = useState({
         category: '',
         title: '',
         img: '',
         description: '',
+        price : '',
         techs: '',
 
 
@@ -50,13 +52,16 @@ function AddCource() {
     }
 
     const FormSubmit = () => {
-        const teacherId = localStorage.getItem('teacherId')
+    const teacherId= localStorage.getItem('teacherId')
+         console.log(teacherId);
         const _formData = new FormData();
         _formData.append('category', courseData.category);
         _formData.append('teacher', teacherId);
         _formData.append('title', courseData.title);
         _formData.append('img', courseData.img, courseData.img.name);
         _formData.append('description', courseData.description);
+        _formData.append('price', courseData.price);
+
         _formData.append('techs', courseData.techs);
 
         console.log("form data from frontend", _formData)
@@ -91,7 +96,7 @@ function AddCource() {
 
     return (
         <div style={{ minHeight: '100vh' }}>
-            <Theader />
+            {/* <Theader /> */}
 
             <div className='container mt-4'>
                 <div className='row'>
@@ -121,6 +126,10 @@ function AddCource() {
                                     <div className="mb-3">
                                         <label for='description' className="form-label">Description</label>
                                         <textarea type="text" onChange={handleChange} name='description' id='description' className="form-control" ></textarea>
+                                    </div>
+                                    <div className="mb-3">
+                                        <label for='description' className="form-label">Price</label>
+                                        <input type="number" onChange={handleChange} name='price' id='price' className="form-control" ></input>
                                     </div>
                                     <div className="mb-3">
                                         <label for='video' className="form-label">Featured image</label>

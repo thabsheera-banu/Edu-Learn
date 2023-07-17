@@ -38,9 +38,10 @@ function StudentLogin() {
       setStatus(data)
       localStorage.setItem('studentLoginstatus',data.studentLoginstatus)
       localStorage.setItem('StudentId',data.student_id)
+      localStorage.setItem('access_token',data.access_token)
       Cookies.set("access-token", data.access_token)
       Cookies.set("refresh-token", data.refresh_token)
-      navigate("/")
+      navigate("/student-dsb")
     }
     catch(error){
       setError("invalid password or username")
@@ -52,13 +53,22 @@ function StudentLogin() {
 
   
   return (
-    <section className="vh-100">
+    <section className="vh-100"
+    style={{
+      backgroundImage: "url('c1.jpg')",
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    }}>
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-12 col-md-8 col-lg-6 col-xl-5">
-            <div className="card shadow-2-strong">
+            <div className="card shadow-2-strong"
+            style={{
+              backgroundColor: 'transparent',
+            }}
+            >
               <div className="card-body p-5 text-center">
-                <h3 className="mb-5">Student Login</h3>
+                <h3 className="mb-5 text-white">Student Login</h3>
                 <div>
                 {error && (
                   <div className="alert alert-danger" role="alert">

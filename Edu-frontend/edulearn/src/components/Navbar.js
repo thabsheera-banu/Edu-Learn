@@ -1,34 +1,127 @@
 import { Link } from "react-router-dom";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import StudentLogout from "../Student/StudentLogout";
+import SearchIcon from '@material-ui/icons/Search';
+import { useState ,useEffect} from "react";
+import IconButton from '@material-ui/core/IconButton';
+import './navbar.css'
 
-function Navbar() {
+function Navbar(props) {
+  const loginstatus = localStorage.getItem('studentLoginstatus')
+  const teacherloginStatus = localStorage.getItem('teacherloginStatus')
+  const [showTextField, setShowTextField] = useState(false);
+  const [searchString,setSearchString] = useState({
+    'search' :''
+  }
+  )
+
+  const handleSearchClick = () => {
+    if (searchString.search.trim() !== '' ) {
+      window.location.href = '/search/' + searchString.search;
+    }
+    
+  
+    setShowTextField(!showTextField);
+  };
+
+  const handlechange = (event) => {
+    setSearchString({
+      ...searchString,
+      [event.target.name] : event.target.value
+
+    })
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const navbar = document.getElementById("navbar");
+      if (navbar) {
+        const scrollTop = window.pageYOffset;
+        if (scrollTop > 0) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
+      <nav  id="navbar" className={`navbar navbar-expand-lg  bg-transparent ${props.home ? "fixed-top":"shadow"} ` } style={{ height: "80px" }}>
+
+        {/* <nav className="navbar navbar-expand-lg navbar-dark bg-dark   "> */}
         <div className="container">
           <Link className="navbar-brand " to="/">EduLearn</Link>
           <button className="navbar-toggler text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon text-light"></span>
           </button>
-
+         
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <a className="nav-link active " aria-current="page" href="#">Home</a>
+                <Link to="/" className="nav-link  " aria-current="page" >Home</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link " to="/category"> All Category</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link " to="/all-cources">Course</Link>
               </li>
             
               <li className="nav-item">
-                <Link className="nav-link " to="/student-login">User</Link>
+               {loginstatus === 'true' &&
+                <Link className="nav-link " to="/student-dsb">User</Link>
+               }
+                              {loginstatus !== 'true' &&
+
+               <Link className="nav-link " to="/student-login">User</Link>
+              }
+
+
                 
               </li>
-              <li><StudentLogout/></li>
             
-              <li className="nav-item">
+              <li className="nav-item dropdown">
+                {/* <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" aria-aria-expanded="false">
+
+                </a>
+                <ul className="">
+
+                </ul> */}
+                {teacherloginStatus === 'true' &&
+                <Link className="nav-link " to="/tutor/dashboard">Tutor</Link>
+                }
+                {teacherloginStatus !== 'true' &&
                 <Link className="nav-link " to="/teacher-login">Tutor</Link>
+                }
               </li>
+              <form className="d-flex">
+      {showTextField && (
+        <input
+          className="form-control me-2"
+          type="search"
+          placeholder="Type something..."
+          aria-label="Search"
+          name = 'search'
+          onChange={handlechange}
+        />
+      )}
+      <IconButton
+       className="ms-3"
+        onClick={handleSearchClick}
+        size="small"
+        style={{ color: 'black' }}
+      >
+        <SearchIcon />
+      </IconButton>
+    </form>
+
               
               
               

@@ -52,6 +52,7 @@ class Teacher(AbstractBaseUser):
     skills=models.TextField()
     profile_img = models.ImageField(upload_to ='teacher_profile_img',null=True)
     is_active = models.BooleanField(default=True)
+    blocked = models.BooleanField(default=False)
     
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -70,10 +71,11 @@ class Teacher(AbstractBaseUser):
 class Student(models.Model):
     full_name = models.CharField(max_length=250)
     email = models.CharField(max_length=250, unique=True)
-    password = models.CharField(max_length=250)
+    password = models.CharField(max_length=250,blank=True,null=True)
     qualification=models.CharField(max_length=100)
     mobile_no=models.CharField(max_length=20)
     intrested_category=models.TextField()
+    profile_img = models.ImageField(upload_to ='student_profile_img',null=True)
     is_active = models.BooleanField(default=False)
     blocked = models.BooleanField(default=False)
 
@@ -87,3 +89,9 @@ class Student(models.Model):
 
     def __str__(self) -> str:
         return self.full_name
+    
+    #total Entrolled courses
+    def entrolled_courses(self):
+        from course.models import StudentCourseEntrollment
+        entrolled_courses = StudentCourseEntrollment.objects.filter(student=self).count()
+        return entrolled_courses 

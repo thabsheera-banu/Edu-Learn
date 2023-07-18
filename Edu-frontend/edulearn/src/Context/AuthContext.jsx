@@ -3,7 +3,6 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import BaseUrl from '../BaseUrl';
 import { useNavigate  } from 'react-router';
-import { useParams } from 'react-router';
 
 const AuthContext = createContext();
 export default AuthContext;

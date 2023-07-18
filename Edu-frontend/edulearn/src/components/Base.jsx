@@ -54,7 +54,6 @@ function Base() {
         <Route path="/detail/:cource_id" element={<CourceDetail />} />
         <Route path="/search/:searchstring" element={<Search />} />
 
-
         <Route path="/all-cources" element={<AllCourses />} />
         <Route path="/category" element={<Category />} />
         <Route path="/course/:category_id" element={<CourseByCategory />} />

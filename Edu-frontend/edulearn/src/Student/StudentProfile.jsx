@@ -174,7 +174,7 @@ function StudentProfile() {
                 <p className="text-muted mb-1">{studentData.full_name}</p>
                 <p className="text-muted mb-4">{studentData.qualification}, {studentData.mobile_no}</p>
                 <div className="d-flex justify-content-center mb-2">
-                  <MDBBtn>Message</MDBBtn>
+                  {/* <MDBBtn>Message</MDBBtn> */}
                 </div>
               </MDBCardBody>
             </MDBCard>

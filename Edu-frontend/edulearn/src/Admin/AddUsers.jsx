@@ -71,7 +71,7 @@ function AddUser() {
                     <TableCell>{stu.full_name}</TableCell>
                     <TableCell>{stu.email}</TableCell>
                     <TableCell>{stu.mobile_no}</TableCell>
-                    <TableCell>Data 3</TableCell>
+                    <TableCell>{stu.entrolled_courses}</TableCell>
                     <TableCell>
                     {stu.blocked ? (
                         <Button variant="contained" color="secondary" onClick={() => unblockStudent(stu.id)}>

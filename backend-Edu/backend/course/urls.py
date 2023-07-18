@@ -2,7 +2,7 @@ from . import views
 from django.urls import path
 
 urlpatterns = [
-    path(" ",views.index,name='index'),
+    path(" ",views.index,name='index'), 
     path("category/",views.CategoryList.as_view()),
     path("category/<int:pk>",views.CategoryUpdate.as_view()),
 

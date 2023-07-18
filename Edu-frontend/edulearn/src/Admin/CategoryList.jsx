@@ -3,13 +3,15 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 import AdminSidebar from './AdminSidebar';
 import axios from 'axios';
 import BaseUrl from '../BaseUrl';
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
 
 function CategoryList() {
+  const navigate =useNavigate()
+  const {course_id} =useParams()
 
     const [categorydata,setCategorydata] = useState([])
     useEffect(()=>{
@@ -21,6 +23,50 @@ function CategoryList() {
             console.log(error);
         }
     },[])
+
+    // delete data
+
+    const Swal = require('sweetalert2')
+    const  handleDelete = (course_id) =>{
+        Swal.fire({
+            title : 'confirm',
+            text  : 'Do you want to delete it',
+            icon  : 'info' ,
+            confirmButtonText : 'continue' ,
+            showCancelButton  : true ,
+
+        }).then((result) =>{
+            if(result.isConfirmed){
+                try{
+                    axios.delete(BaseUrl+"course/category/" + course_id)
+                    .then(() => {
+                        Swal.fire("data has been Deleted")
+                        try{
+                            axios.get(BaseUrl+"course/course-chapter/" + course_id)
+                            .then((res) => {
+                                setCategorydata(res.data)
+                            })
+                            navigate('/admin/Categorylist/')
+
+
+                        }catch(error){
+                            console.log(error);
+                        }
+
+                    })
+                }catch(error){
+                    Swal.fire("error","Data has not been deleted !")
+                   
+                }
+            }
+            else{
+                Swal.fire("error","Data has not been Deleted")
+
+            }
+
+        })
+
+    }
   return (
     <div style={{ minHeight: '100vh' }}>
 
@@ -64,7 +110,7 @@ function CategoryList() {
                                         </IconButton>
                                     
                                     </Link> 
-                                        <IconButton  aria-label="delete" color="error" className='ms-3'>
+                                        <IconButton onClick={() =>handleDelete(category.id)}  aria-label="delete" color="error" className='ms-3'>
                                         <DeleteIcon   />
                                         </IconButton>     
                       </TableCell>

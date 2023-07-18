@@ -40,7 +40,7 @@ function CourseChapters() {
     // delete data
 
     const Swal = require('sweetalert2')
-    const handleDelete = (chapter_id) =>{
+    const  handleDelete = (chapter_id) =>{
         Swal.fire({
             title : 'confirm',
             text  : 'Do you want to delete it',

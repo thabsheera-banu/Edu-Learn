@@ -11,7 +11,6 @@ import EditIcon from '@mui/icons-material/Edit';
 
 function CategoryList() {
   const navigate =useNavigate()
-  const {course_id} =useParams()
 
     const [categorydata,setCategorydata] = useState([])
     useEffect(()=>{

@@ -36,7 +36,6 @@ function StudentTeachers() {
   })
   const [successMsg,setsuccessMsg] = useState('')
   const [errorMsg,setErrorMsg] = useState('')
-  const teacherId = localStorage.getItem('teacherId');
   const StudentId = localStorage.getItem('StudentId')
 
   useEffect(() => {

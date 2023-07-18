@@ -32,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function StudentProfile() {
-    const Navigate = useNavigate()
     const [studentData,setstudentData] = useState({
         'full_name' :'',
         'email' : '',

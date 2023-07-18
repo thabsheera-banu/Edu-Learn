@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState  } from 'react';
+import React, { createContext, useEffect, useState  } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import BaseUrl from '../BaseUrl';
@@ -127,6 +127,7 @@ export function AuthProvider({ children }) {
     logout,
     studentLogin,
     studentLogout,
+    student
     
   };
 

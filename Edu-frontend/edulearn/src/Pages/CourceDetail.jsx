@@ -2,7 +2,7 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import IconButton from '@mui/material/IconButton';
 import axios from 'axios';
@@ -22,7 +22,6 @@ function CourceDetail() {
   const [showModal, setShowModal] = useState(false);
   const [loginStatus, setLoginstaus] = useState();
   const [entrolstatus, setEntrollstatus] = useState();
-  const [courseRate, setCourseRate] = useState('');
   const [load, setLoad] = useState(false)
   const navigate = useNavigate()
   let { cource_id } = useParams();
@@ -50,7 +49,7 @@ function CourceDetail() {
     try {
       axios.get(BaseUrl + 'course/fetch-entroll-status/' + studentId + "/" + cource_id)
         .then((res) => {
-          if (res.data.bool == true) {
+          if (res.data.bool === true) {
             setEntrollstatus('success')
 
           }
@@ -61,46 +60,46 @@ function CourceDetail() {
     }
 
     const studentLoginstatus = localStorage.getItem('studentLoginstatus')
-    if (studentLoginstatus == 'true') {
+    if (studentLoginstatus === 'true') {
       setLoginstaus('success')
 
     }
   }, []);
 
-  const entrollCource = () => {
-    const studentId = localStorage.getItem('StudentId')
-    const _formData = new FormData();
-    _formData.append('course', cource_id);
-    _formData.append('student ', studentId);
+  // const entrollCource = () => {
+  //   const studentId = localStorage.getItem('StudentId')
+  //   const _formData = new FormData();
+  //   _formData.append('course', cource_id);
+  //   _formData.append('student ', studentId);
 
-    try {
-      axios.post(BaseUrl + "course/student-entroll-course", _formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      }).then((res) => {
-        if (res.status === 200) {
-          Swal.fire({
-            title: 'successfully entrolled this course',
-            icon: 'success',
-            toast: true,
-            timer: 3000,
-            position: 'top-right',
-            timerProgressBar: true,
-            showConfirmButton: false
+  //   try {
+  //     axios.post(BaseUrl + "course/student-entroll-course", _formData, {
+  //       headers: {
+  //         'Content-Type': 'multipart/form-data'
+  //       }
+  //     }).then((res) => {
+  //       if (res.status === 200) {
+  //         Swal.fire({
+  //           title: 'successfully entrolled this course',
+  //           icon: 'success',
+  //           toast: true,
+  //           timer: 3000,
+  //           position: 'top-right',
+  //           timerProgressBar: true,
+  //           showConfirmButton: false
 
 
-          })
-          setEntrollstatus('success')
+  //         })
+  //         setEntrollstatus('success')
 
-        }
-      })
+  //       }
+  //     })
 
-    } catch (error) {
-      console.log(error);
-    }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
 
-  }
+  // }
 
 
 
@@ -124,11 +123,11 @@ function CourceDetail() {
 
 
 
-const handleCheckout = () => {
-  console.log('clicked handle checkout');
-  navigate("/checkout");
+// const handleCheckout = () => {
+//   console.log('clicked handle checkout');
+//   navigate("/checkout");
 
-};
+// };
 const freeEntroll = () => {
   const StudentId =localStorage.getItem('StudentId')
 

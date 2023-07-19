@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
 import {Link} from 'react-router-dom'
+import BaseUrl from '../BaseUrl'
 
 function StudentRegister() {
     const navigate=useNavigate()
@@ -56,7 +57,7 @@ function StudentRegister() {
         intrested_category : intrested_category
       }
 
-      const {data} = await axios.post("http://127.0.0.1:8000/user/student-register", user)
+      const {data} = await axios.post(BaseUrl + "user/student-register", user)
       console.log( "axios return data" ,data);
       navigate('/student-login')
       

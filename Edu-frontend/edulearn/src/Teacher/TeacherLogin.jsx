@@ -41,7 +41,7 @@ function TeacherLogin() {
       localStorage.setItem('teacherId', teacherId);
       navigate('/tutor/dashboard');
 
-      // const {data} = await axios.post("http://127.0.0.1:8000/user/teacherlogin", user);
+      // const {data} = await axios.post(BaseUrl+"user/teacherlogin", user);
       // console.log(data)
       // Cookies.set("access-token", data.access_token)
       // Cookies.set("refresh-token", data.refresh_token)

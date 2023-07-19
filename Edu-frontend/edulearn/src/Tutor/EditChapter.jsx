@@ -43,7 +43,7 @@ function EditChapter() {
         _formData.append('description',chapterData.description);
         _formData.append('remarks',chapterData.remarks);
         try{
-            axios.put('http://127.0.0.1:8000/course/chapter/'+chapter_id,_formData ,{
+            axios.put(BaseUrl+'course/chapter/'+chapter_id,_formData ,{
                 headers : {
                     'Content-Type' : 'multipart/form-data'
                 }

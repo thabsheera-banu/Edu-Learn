@@ -6,6 +6,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import { useParams } from 'react-router'
+import BaseUrl from '../BaseUrl'
 
 function AddCource() {
     
@@ -23,7 +24,7 @@ function AddCource() {
     })
     useEffect(() => {
         try {
-            axios.get("http://127.0.0.1:8000/course/category").then((res) => {
+            axios.get(BaseUrl+"course/category").then((res) => {
                 setCategory(res.data)
             });
         }
@@ -67,7 +68,7 @@ function AddCource() {
         console.log("form data from frontend", _formData)
 
         try {
-            axios.post('http://127.0.0.1:8000/course/course/', _formData, {
+            axios.post(BaseUrl+'course/course/', _formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

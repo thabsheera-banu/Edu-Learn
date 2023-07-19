@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import './teacher.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router';
+import BaseUrl from '../BaseUrl';
 
 
 function TeacherRegister() {
@@ -54,7 +55,7 @@ function TeacherRegister() {
       mobile_no : mobile_no,
       skills : skills
     }
-    const {data} = await axios.post("http://127.0.0.1:8000/user/register", user)
+    const {data} = await axios.post(BaseUrl+"user/register", user)
     console.log( "axios return data" ,data);
     navigate('/teacher-login')
     

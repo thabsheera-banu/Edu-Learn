@@ -29,7 +29,7 @@ export function AuthProvider({ children }) {
   const login = async (email, password) => {
     try {
       const response = await axios.post(
-        'http://127.0.0.1:8000/user/teacherlogin',
+        BaseUrl+'user/teacherlogin',
         { email, password }
       );
 

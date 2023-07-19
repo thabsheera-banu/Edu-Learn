@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import Cookies from 'js-cookie'
+import BaseUrl from '../BaseUrl'
 
 
 function StudentLogin() {
@@ -33,7 +34,7 @@ function StudentLogin() {
     };
     console.log(user, "user input data")
     try{
-      const {data} = await axios.post("http://127.0.0.1:8000/user/studentlogin", user);
+      const {data} = await axios.post(BaseUrl+"user/studentlogin", user);
       console.log(data)
       setStatus(data)
       localStorage.setItem('studentLoginstatus',data.studentLoginstatus)

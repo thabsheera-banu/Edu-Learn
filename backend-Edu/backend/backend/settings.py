@@ -141,8 +141,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-PUBLIC_KEY ='rzp_test_YRIPc7w7gPnCKk'
-SECRET_KEY ='4jU1cEQdGjRZkZJh52BL9LUf'
+PUBLIC_KEY =env('PUBLIC_KEY')
+SECRET_KEY =env('SECRET_KEY')
 
 
 

@@ -41,7 +41,7 @@ function AddUser() {
   
   return (
     <div style={{ minHeight: '100vh' }}>
-      <AdminHeader />
+      {/* <AdminHeader /> */}
 
       <div className='container mt-4'>
         <div className='row'>

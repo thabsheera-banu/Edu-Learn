@@ -64,6 +64,9 @@ function TeacherLogin() {
             <div className="card shadow-2-strong  " style={{backgroundImage: "url('')" ,backgroundSize: 'cover'  ,borderWidth: '2px', borderColor: 'white', borderRadius: '10px'}}>
               <div className="card-body p-5 text-center">
                 <h3 className="mb-5"> Teacher Sign in</h3>
+                <Link to='/'>
+              <img src="logo.png" alt="Logo" style={{ marginBottom: '20px', maxWidth: '50px' }} />
+              </Link>
                 <div>
                 {error && <p className="text-danger">{error}</p>}
                 </div>

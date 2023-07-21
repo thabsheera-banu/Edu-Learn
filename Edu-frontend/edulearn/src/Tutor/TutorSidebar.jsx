@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
 
 function TutorSidebar() {
   const {logout} = useContext(AuthContext)
+  const name = localStorage.getItem('teacher')
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -60,7 +61,7 @@ function TutorSidebar() {
 
   const drawer = (
     <div>
-      <div><h5 className='mt-5 ms-5'>Teacher  panel</h5></div>
+      <div><h5 className='mt-5 ms-5'>👋 Hi {name}</h5></div>
       
       <div className={classes.toolbar} />
       

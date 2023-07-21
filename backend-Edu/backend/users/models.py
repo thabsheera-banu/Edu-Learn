@@ -64,7 +64,7 @@ class Teacher(AbstractBaseUser):
         db_table = 'teacher'
 
     def __str__(self) -> str:
-        return self.full_name
+        return self.email
 
     #student Details
 

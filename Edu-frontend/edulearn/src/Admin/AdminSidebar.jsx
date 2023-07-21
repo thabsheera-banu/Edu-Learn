@@ -6,6 +6,7 @@ function AdminSidebar() {
     <div className="card bg-light">
     <div className="card-body">
       <div className="list-group list-group-flush">
+      <Link to="/" className="list-group-item list-group-item-action">Home</Link>
         <Link to="/admin/dashboard" className="list-group-item list-group-item-action">Dashboard</Link>
         <Link to="/admin/users" className="list-group-item list-group-item-action">Users</Link>
         <Link to="/admin/tutors" className="list-group-item list-group-item-action">Tutors</Link>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function AdminLogin() {
   const navigate=useNavigate();
@@ -32,6 +33,9 @@ function AdminLogin() {
             <div className="card shadow-2-strong">
               <div className="card-body p-5 text-center">
                 <h3 className="mb-5">Admin Login</h3>
+                <Link to='/'>
+              <img src="logo.png" alt="Logo" style={{ marginBottom: '20px', maxWidth: '50px' }} />
+              </Link>
                 {error && (
                   <div className="alert alert-danger" role="alert">
                     {error}

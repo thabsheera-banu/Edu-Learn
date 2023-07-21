@@ -7,6 +7,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router';
 import BaseUrl from '../BaseUrl';
 import Swal from 'sweetalert2';
+import * as Yup from 'yup';
 
 import {
     MDBCol,
@@ -86,59 +87,74 @@ function StudentProfile() {
             p_img: event.target.files[0]
         });
     }
-    const handleSubmit = ((event)=>{
-      const studentFormData = new FormData();
-      studentFormData.append("full_name", studentData.full_name)
-      studentFormData.append("email",studentData.email)
-      studentFormData.append("qualification", studentData.qualification)
-      studentFormData.append("mobile_no", studentData.mobile_no)
-      studentFormData.append("intrested_category",studentData.intrested_category)
-      if(studentData.p_img !== ''){
-        studentFormData.append('profile_img',studentData.p_img,studentData.p_img.name);
-      } 
-  
-  
-      try{
-        axios.put(BaseUrl+'teacher/student-detail/'+StudentId,studentFormData,{
-          headers : {
-            'Content-Type' : 'multipart/form-data'
-        }
-        }).then((response)=>{
-          if(response.status === 200){
-            setstudentData(prevData => ({
-              ...prevData,
-              full_name: studentData.full_name,
-              email: studentData.email,
-              qualification: studentData.qualification,
-              mobile_no: studentData.mobile_no,
-              profile_img: response.data.profile_img,
-              intrested_category: studentData.intrested_category,
-            }));
-            Swal.fire({
-                title : 'data has been updated',
-                icon  : 'success' ,
-                toast :true,
-                timer :3000 ,
-                position : 'top-right' ,
-                timerProgressBar : true ,
-                showConfirmButton :false
-                
-    
-            })
-    
-    }
 
-          
+    const validationSchema = Yup.object().shape({
+      full_name: Yup.string().required('Full Name is required'),
+      qualification: Yup.string().required('Qualification is required'),
+      intrested_category: Yup.string().required('Interested Category is required'),
+    });
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      validationSchema
+        .validate(studentData, { abortEarly: false })
+        .then(() => {
+          // Valid form data, proceed with form submission or API call
+          const studentFormData = new FormData();
+          studentFormData.append('full_name', studentData.full_name);
+          studentFormData.append('email', studentData.email);
+          studentFormData.append('qualification', studentData.qualification);
+          studentFormData.append('mobile_no', studentData.mobile_no);
+          studentFormData.append('intrested_category', studentData.intrested_category);
+          if (studentData.p_img !== '') {
+            studentFormData.append('profile_img', studentData.p_img, studentData.p_img.name);
+          }
   
+          try {
+            axios
+              .put(BaseUrl + 'teacher/student-detail/' + StudentId, studentFormData, {
+                headers: {
+                  'Content-Type': 'multipart/form-data',
+                },
+              })
+              .then((response) => {
+                if (response.status === 200) {
+                  setstudentData((prevData) => ({
+                    ...prevData,
+                    full_name: studentData.full_name,
+                    email: studentData.email,
+                    qualification: studentData.qualification,
+                    mobile_no: studentData.mobile_no,
+                    profile_img: response.data.profile_img,
+                    intrested_category: studentData.intrested_category,
+                  }));
+                  Swal.fire({
+                    title: 'Data has been updated',
+                    icon: 'success',
+                    toast: true,
+                    timer: 3000,
+                    position: 'top-right',
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                  });
+                }
+              });
+          } catch (error) {
+            console.log(error);
+            setstudentData({
+              status: 'error',
+            });
+          }
         })
-      }catch(error){
-        console.log(error);
-        setstudentData({
-          'status':'error'
-        })
+        .catch((errors) => {
+          // Handle validation errors
+          console.log(errors);
+          Swal.fire({
+            title: 'Validation Error',
+            text: 'Please fill in all required fields',
+            icon: 'error',
+          });
+        });
       }
-    
-    })
 
       
   const classes = useStyles();

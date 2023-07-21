@@ -11,6 +11,7 @@ import Navbar from '../components/Navbar';
 import Button from '@mui/material/Button';
 import Swal from 'sweetalert2';
 import LockIcon from '@mui/icons-material/Lock';
+import './coursedetail.css'
 
 
 function CourceDetail() {
@@ -182,31 +183,35 @@ return (
 
             {/* --- */}
             
-            <div className="col-md-4 ">
-              <img src={courseData.img} className="card-img" alt="course image" />
+            <div className="col-md-8  " >
+            <h3 className="card-title">{courseData.title}</h3>
+                          <span className="card-text mt-1" >{courseData.description}</span>
 
+            <p className="card-text fw-bold mt-1">Course By : <a >{teacherData.full_name}</a></p>
+              <p className="card-text fw-bold mt-1">Techs     : <a >{courseData.techs}</a></p>
+              <p className="card-text fw-bold mt-1">Duration: <a >3 hours</a></p>
+              <p className="card-text fw-bold mt-1">Total Enrolled: <a >{courseData.total_entrolled_students}</a></p>
+              <p className="card-text fw-bold mt-1">Rating: <a >4.5/5</a></p>
+              
             </div>
-            <div className="col-md-8">
-              <h3 className="card-title">{courseData.title}</h3>
+            <div className="col-md-4"> 
+            <img src={courseData.img} className="card-img " alt="course image" />
+            {courseData.price === 0 ?
+              <p className="card-text fw-bold mt-1">Rs: <a href="#">Free</a></p>
+              :
+              <p className="card-text text-center fw-bold mt-1">Rs: <a >₹{courseData.price}</a></p>
+               }
+
+
               <div>
              
                    
               </div>
-              {/* <span className="card-text mt-1" >{courseData.description}</span> */}
-              <p className="card-text fw-bold mt-1">Course By: <a href="#">{teacherData.full_name}</a></p>
-              <p className="card-text fw-bold mt-1">Techs: <a href="#">{courseData.techs}</a></p>
-              <p className="card-text fw-bold mt-1">Duration: <a href="#">3 hours</a></p>
-              <p className="card-text fw-bold mt-1">Total Enrolled: <a href="#">{courseData.total_entrolled_students}</a></p>
-              <p className="card-text fw-bold mt-1">Rating: <a href="#">4.5/5</a></p>
-              {courseData.price === 0 ?
-              <p className="card-text fw-bold mt-1">Rs: <a href="#">Free</a></p>
-              :
-              <p className="card-text fw-bold mt-1">Rs: <a href="#">₹{courseData.price}</a></p>
-               }
+             
 
 {entrolstatus ?
 
-<div style={{backgroundColor:'green',color:'white',padding:'5px',borderRadius:'10px'}} className="float-end">You Are Entrolled</div>
+<Button variant="contained" color="info" className='mt-3 ms-5'>You Are Entrolled</Button>
 :
 courseData.price === 0 ?
   <Button variant="contained" color="success" className='mt-3' onClick={() => { freeEntroll(); setLoad(!load)  }}>Free Entroll</Button>

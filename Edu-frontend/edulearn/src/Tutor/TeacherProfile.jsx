@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router';
 import BaseUrl from '../BaseUrl';
 import Swal from 'sweetalert2';
+import * as Yup from 'yup';
 
 import {
     MDBCol,
@@ -33,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function TeacherProfile() {
-    const Navigate = useNavigate()
     const [errors,setErrors] = useState('')
     const [teacherData,setteacherData] = useState({
         'full_name' :'',
@@ -75,43 +75,6 @@ function TeacherProfile() {
 
     },[])
 
-    const validateForm = () => {
-      const errors = {};
-  
-      if (!teacherData.full_name) {
-        errors.full_name = 'Name is required';
-      }
-  
-      
-  
-      if (!teacherData.qualification) {
-        errors.qualification = 'Qualification is required';
-      }
-  
-      // if (!teacherData.mobile_no) {
-      //   errors.mobile_no = 'Mobile number is required';
-      // } else if (!isValidMobileNumber(teacherData.mobile_no)) {
-      //   errors.mobile_no = 'Invalid mobile number format';
-      // }
-  
-      if (!teacherData.skills) {
-        errors.skills = 'Skills are required';
-      }
-  
-      setErrors(errors);
-  
-      return Object.keys(errors).length === 0;
-    };
-  
-    const isValidEmail = (email) => {
-      // Email validation logic here
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    };
-  
-    const isValidMobileNumber = (mobileNo) => {
-      // Mobile number validation logic here
-      return /^[0-9]{10}$/.test(mobileNo);
-    };
     
 
     const handleChange =(event)=>{
@@ -127,12 +90,20 @@ function TeacherProfile() {
             p_img: event.target.files[0]
         });
     }
-    const handleSubmit = ((event)=>{
-      event.preventDefault();
 
-    if (!validateForm()) {
-      return;
-    }
+    const validationSchema = Yup.object().shape({
+      full_name: Yup.string().required('Full Name is required'),
+      qualification: Yup.string().required('Qualification is required'),
+      skills: Yup.string().required('skills is required'),
+    });
+    
+    const handleSubmit = ((event)=>{
+    event.preventDefault();
+    validationSchema
+    .validate(teacherData, { abortEarly: false })
+    .then(() => {
+      
+      
       const teacherFormData = new FormData();
       teacherFormData.append("full_name", teacherData.full_name)
       teacherFormData.append("email", teacherData.email)
@@ -185,6 +156,17 @@ function TeacherProfile() {
       }
     
     })
+    .catch((errors) => {
+      // Handle validation errors
+      console.log(errors);
+      Swal.fire({
+        title: 'Validation Error',
+        text: 'Please fill in all required fields',
+        icon: 'error',
+      });
+    });
+  }
+    )
 
       
   const classes = useStyles();

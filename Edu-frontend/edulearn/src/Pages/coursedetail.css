@@ -1,0 +1,14 @@
+.course-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .course-details .card-text {
+    text-decoration: none;
+    
+    /* Add any specific styling for links */
+  }
+  
+  /* Additional styling for .card-text, .fw-bold, .mt-1, etc. can be added here */
+  

@@ -1,4 +1,121 @@
 .success{border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto}
+.payment-success-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  /* .payment-card {
+    .payment-success-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: #f5f5f5;
+    }
+    
+    .payment-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+      width: 80%;
+      max-width: 400px;
+      margin: 20px;
+    }
+    
+    .success-icon {
+      font-size: 48px;
+      color: #00cc66;
+      margin-bottom: 20px;
+    }
+    
+    h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    
+    p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    } */
+    
+    /* .btn {
+      padding: 10px 20px;
+      font-size: 18px;
+      border-radius: 5px;
+      text-decoration: none;
+      color: #00cc66;
+      border: 2px solid #00cc66;
+      transition: background-color 0.2s ease-in-out;
+    } */
+    
+    /* .btn:hover {
+      background-color: #00cc66;
+      color: #fff;
+    } */
+    
+    /* Responsive styles */
+    /* @media (max-width: 600px) {
+      .payment-card {
+        width: 90%;
+        max-width: 100%;
+        margin: 10px;
+      }
+    }
+    
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 80%;
+    max-width: 400px;
+    margin: 20px;
+  } */
+  
+  /* .success-icon {
+    font-size: 48px;
+    color: #00cc66;
+    margin-bottom: 20px;
+  }
+   */
+  /* h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #00cc66;
+    border: 2px solid #00cc66;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .btn:hover {
+    background-color: #00cc66;
+    color: #fff;
+  }
+  
+  @media (max-width: 600px) {
+    .payment-card {
+      width: 90%;
+      max-width: 100%;
+      margin: 10px;
+    }
+  }
+  
 
     
- 
+  */

@@ -69,6 +69,8 @@ function StudentLogin() {
             }}
             >
               <div className="card-body p-5 text-center">
+              <img src="logo.png" alt="Logo" style={{ marginBottom: '20px', maxWidth: '50px' }} />
+
                 <h3 className="mb-5 text-white">Student Login</h3>
                 <div>
                 {error && (

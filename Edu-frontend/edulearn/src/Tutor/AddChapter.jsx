@@ -4,6 +4,8 @@ import Theader from './Theader';
 import TutorSidebar from './TutorSidebar';
 import { useParams } from 'react-router';
 import BaseUrl from '../BaseUrl';
+import * as Yup from 'yup';
+import Swal from 'sweetalert2';
 
 function AddChapter() {
     const[chapterData,setchapterData] = useState({
@@ -29,35 +31,43 @@ function AddChapter() {
         });
     }
     const {course_id}=useParams()
+    const validationSchema = Yup.object().shape({
+        title: Yup.string().required('Title is required'),
+        description: Yup.string().required('Description is required'),
+        video: Yup.mixed().required('Video is required'),
+        remarks: Yup.string().required('Remarks are required'),
+      });
 
-    const FormSubmit = () =>{
-        const _formData=new FormData();
-        _formData.append('course',course_id);
-        _formData.append('title',chapterData.title);
-        _formData.append('video',chapterData.video,chapterData.video.name);
-        _formData.append('description',chapterData.description);
-        _formData.append('remarks',chapterData.remarks);
-        try{
-            axios.post(BaseUrl+'course/chapter/',_formData ,{
-                headers : {
-                    'Content-Type' : 'multipart/form-data'
-                }
-            })
-            .then((res) => {
-                console.log(res.data);
-                window.location.href='/add-chapter/4';
-            
+      const FormSubmit = async () => {
+        try {
+          // Validate form data using Yup schema
+          await validationSchema.validate(chapterData, { abortEarly: false });
+      
+          const _formData = new FormData();
+          _formData.append('course', course_id);
+          _formData.append('title', chapterData.title);
+          _formData.append('video', chapterData.video, chapterData.video.name);
+          _formData.append('description', chapterData.description);
+          _formData.append('remarks', chapterData.remarks);
+      
+          axios.post(BaseUrl + 'course/chapter/', _formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          }).then((res) => {
+            console.log(res.data);
+            // Show success Swal alert
+            Swal.fire('Success', 'Chapter added successfully!', 'success').then(() => {
+              window.location.href = '/add-chapter/4';
             });
+          });
+        } catch (error) {
+          // If there are validation errors, show error Swal alert
+          const errorMessages = error.inner.map((err) => err.message);
+          Swal.fire('Error', errorMessages.join('\n'), 'error');
         }
-        catch(error){
-            console.log(error);
-        }
-
-
-
-
-
-    }
+      };
+      
   return (
     <div style={{minHeight:'100vh'}}>
        {/* <Theader/> */}

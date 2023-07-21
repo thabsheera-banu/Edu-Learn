@@ -47,16 +47,21 @@ function TutorCourses() {
            <TutorSidebar/>
 
         </aside>
+        
         <section className='col-md-9 my-3'>
 
-        
-
-        <table class="table" style={{minHeight:'70vh'}}>
-        <thead>
-        <h5 className='table-header '>My Courses</h5>
+        <Link  to = {'/tutor/addcourse'}>
+                                      <Button className='float-end' variant="contained" color="info">
+                                          Add Course
+                                        </Button>
+        </Link> 
           
         
+        <table class="table" style={{minHeight:'70vh'}}>
+        <thead>
+      <h5 className='table-header  '>My Courses</h5>
             <tr>
+              
             <th scope="col">No</th>
 
             <th scope="col">Name</th>

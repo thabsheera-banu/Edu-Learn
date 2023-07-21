@@ -40,6 +40,7 @@ import Category from "../Pages/Category";
 import CourseByCategory from "../Pages/CourseByCategory";
 import AddCategory from "../Admin/AddCategory";
 import CategoryList from "../Admin/CategoryList";
+import RequireAuth from "../Pages/RequireAuth";
 
 
 
@@ -83,7 +84,7 @@ function Base() {
         <Route path="/tutor/edit-course/:course_id" element={<EditCource />} />
         <Route path="/tutor/profile" element={<TeacherProfile />} />
         <Route path="/student" element={<StudentSidebar />} />
-        <Route path="/student-dsb" element={<StudentDashboard />} />
+        <Route path="/student-dsb" element={<RequireAuth><StudentDashboard /></RequireAuth> } />
         <Route path="tutor/chat" element={<TutorChat />} />
         <Route path="tutor/studentlist" element={<TutorMyStudent />} />
         <Route path="/student-courselist" element={<StudentCourses />} />

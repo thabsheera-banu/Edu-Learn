@@ -90,12 +90,12 @@ function TutorSidebar() {
           </ListItemIcon>
           <ListItemText primary="My Courses" />
         </ListItem>
-        <ListItem button component={Link} to="/tutor/addcourse">
+        {/* <ListItem button component={Link} to="/tutor/addcourse">
              <ListItemIcon>
              <PersonIcon style={{ color: '#FFFFFF' }} />
              </ListItemIcon>
             <ListItemText primary="Add Courses" />
-        </ListItem>
+        </ListItem> */}
         <ListItem button component={Link} to="/tutor/studentlist">
              <ListItemIcon>
              <PersonIcon style={{ color: '#FFFFFF' }} />

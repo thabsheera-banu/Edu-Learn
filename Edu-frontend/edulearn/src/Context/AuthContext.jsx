@@ -69,6 +69,8 @@ export function AuthProvider({ children }) {
     // Set user and isAuthenticated states
     setUser(null);
     setIsAuthenticated(false);
+    navigate('/teacher-login')
+
     
   };
 

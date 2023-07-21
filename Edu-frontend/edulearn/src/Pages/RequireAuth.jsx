@@ -4,8 +4,8 @@ import AuthContext from '../Context/AuthContext';
 
 
 const RequireAuth = ({children,...rest})=>{
-    let {isAuthenticated} = useContext(AuthContext)
-    console.log("requireauth works");
+    const {isAuthenticated} = useContext(AuthContext)
+    console.log("requireauth works", isAuthenticated);
     return(
         <>{isAuthenticated ? children:
         <Navigate to='/student-login'/>}</>

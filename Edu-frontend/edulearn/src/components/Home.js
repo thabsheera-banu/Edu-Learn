@@ -163,41 +163,56 @@ function Home() {
                 <div className="text-center container py-5">
                     <h4 className="mt-4 mb-5"><strong>Popular Courses</strong></h4>
 
-                    <div className="row">
-                        {course && course.map((cate, index) => {
-                            return (
-                                <div className="col-lg-3 col-md-12 mb-4">
-                                    <div className="card">
-                                        <div className="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-                                            data-mdb-ripple-color="light">
-                                            <Link to={"/detail/" + cate.id}>
-                                                <img src={cate.img}
+                    <div className="row " style={{ marginTop: "30px" }}>
+                    {course && course.map((cate, index) => {
+                        return (
+                            <div className="col-lg-3 col-md-6 mb-4">
+                                <div className="card">
+                                    <div className="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+                                        data-mdb-ripple-color="light">
+                                        <Link to={"/detail/" + cate.id}>
+                                            <img src={cate.img}
 
-                                                    className="w-100" /></Link>
-                                            <a href="#!">
-                                                <div className="mask">
+                                                className="w-100" /></Link>
+                                        <a href="#!">
 
-                                                </div>
-                                                <div className="hover-overlay">
-                                                    <div className="mask1" ></div>
-                                                </div>
-                                            </a>
+                                            <div className="hover-overlay">
+                                                <div className="mask1" ></div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div className="card-body">
+
+                                        <div className="card-title mb-3 text-center "  >{cate.title}  </div>
+                                        <div className="text-center mb-2">Created By:<span> {cate.teacher.full_name}</span></div>
+
+
+
+
+
+
+                                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                            {cate.price !== 0 ?
+                                                <button className="price-button round-button bg-primary" style={{ backgroundColor: '#202020', color: 'white', borderRadius: '50%', width: '50px', height: '30px' }}>
+                                                    ₹ {cate.price}
+                                                </button>
+                                                :
+                                                <button className="price-button round-button bg-success" style={{ backgroundColor: 'bg-primary', color: 'white', borderRadius: '50%', width: '50px', height: '30px' }}>
+                                                    Free
+                                                </button>
+                                            }
                                         </div>
-                                        <div className="card-body">
-                                            <a href="" className="text-reset">
-                                                <Link className="card-title mb-3" to={"/detail/" + cate.id}>{cate.title}</Link>
-                                            </a>
 
-                                            <h6 className="mb-3"> ₹ {cate.price}</h6>
-                                        </div>
                                     </div>
                                 </div>
+                            </div>
 
-                            )
-                        })}
+                        )
+                    })}
 
 
-                    </div>
+                </div>
+
 
 
                 </div>

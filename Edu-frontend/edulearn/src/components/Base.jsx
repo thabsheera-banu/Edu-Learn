@@ -143,7 +143,7 @@ function Base() {
 
 
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
 
     </div>
   );

@@ -39,7 +39,8 @@ export function AuthProvider({ children }) {
       Cookies.set('access-token', access_token);
       Cookies.set('refresh-token', refresh_token);
       Cookies.set('teacher_id', teacher_id);
-      localStorage.setItem('teacherId',teacherId)
+      localStorage.setItem('teacherId',teacherId);
+      localStorage.setItem('teacher', data.teacher);
       localStorage.setItem('teacherloginStatus',data.teacherloginStatus)
 
       setTeacherId(teacher_id);

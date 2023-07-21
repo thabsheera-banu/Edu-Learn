@@ -151,7 +151,9 @@ class TeacherLoginView(APIView):
                 "access_token" : access_token,
                 "refresh_token" : refresh_token,
                 "teacher_id":user.id,
-                "teacherloginStatus" : 'true',
+                "teacherloginStatus" : True,
+                "teacher" :user.full_name,
+
             })
         else:
             raise AuthenticationFailed("You are blocked")

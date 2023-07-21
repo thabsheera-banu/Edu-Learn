@@ -9,6 +9,9 @@ import './navbar.css'
 function Navbar(props) {
   const loginstatus = localStorage.getItem('studentLoginstatus')
   const teacherloginStatus = localStorage.getItem('teacherloginStatus')
+  const name = localStorage.getItem('name')
+  const teacher = localStorage.getItem('teacher')
+  
   const [showTextField, setShowTextField] = useState(false);
   const [searchString, setSearchString] = useState({
     'search': ''
@@ -89,15 +92,15 @@ function Navbar(props) {
 ) : teacherloginStatus && !loginstatus ? (
   <li className="nav-item dropdown">
     {teacherloginStatus === 'true' ? (
-      <Link className="nav-link" to="/tutor/dashboard">Tutor</Link>
+      <Link className="nav-link" to="/tutor/dashboard">{teacher}</Link>
     ) : (
-      <Link className="nav-link" to="/teacher-login">Tutor</Link>
+      <Link className="nav-link" to="/teacher-login">Login</Link>
     )}
   </li>
 ) : (
   <li className="nav-item">
     {loginstatus === 'true' ? (
-      <Link className="nav-link" to="/student-dsb">Student</Link>
+      <Link className="nav-link" to="/student-dsb">{name}</Link>
     ) : (
       <Link className="nav-link" to="/student-login">Login</Link>
     )}

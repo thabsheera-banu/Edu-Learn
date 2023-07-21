@@ -39,6 +39,7 @@ function TeacherLogin() {
      try{
       const { teacherId } = await login(email, password);
       localStorage.setItem('teacherId', teacherId);
+
       navigate('/tutor/dashboard');
 
       // const {data} = await axios.post(BaseUrl+"user/teacherlogin", user);

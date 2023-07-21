@@ -39,6 +39,7 @@ function StudentLogin() {
       setStatus(data)
       localStorage.setItem('studentLoginstatus',data.studentLoginstatus)
       localStorage.setItem('StudentId',data.student_id)
+      localStorage.setItem('name' , data.student)
       localStorage.setItem('access_token',data.access_token)
       Cookies.set("access-token", data.access_token)
       Cookies.set("refresh-token", data.refresh_token)
@@ -69,8 +70,9 @@ function StudentLogin() {
             }}
             >
               <div className="card-body p-5 text-center">
+                <Link to='/'>
               <img src="logo.png" alt="Logo" style={{ marginBottom: '20px', maxWidth: '50px' }} />
-
+              </Link>
                 <h3 className="mb-5 text-white">Student Login</h3>
                 <div>
                 {error && (
@@ -108,8 +110,8 @@ function StudentLogin() {
                     {/* <input className="form-check-input" type="checkbox" value="" id="form1Example3" /> */}
 
                     <label className="form-check-label" htmlFor="form1Example3">Dont have an Account pls Login here ....  <Link to="/student-register"> Register </Link></label>
+                    <br />
                     <label className="form-check-label" htmlFor="form1Example3">Are you a teacher  ....  <Link to="/teacher-login"> Teacher Login </Link></label>
-
                   </div>
 
                   <button onClick={submitForm}

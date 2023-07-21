@@ -1,11 +1,11 @@
 import React from 'react'
-import AdminHeader from './AdminHeader'
+// import AdminHeader from './AdminHeader'
 import AdminSidebar from './AdminSidebar'
 
 function AdminDashboard() {
   return (
     <div style={{minHeight:'100vh'}}>
-      <AdminHeader/>
+      {/* <AdminHeader/> */}
         <div className='container mt-4'>
             <div className='row'>
                 <aside className='col-md-3'>

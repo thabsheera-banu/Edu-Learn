@@ -41,6 +41,9 @@ import CourseByCategory from "../Pages/CourseByCategory";
 import AddCategory from "../Admin/AddCategory";
 import CategoryList from "../Admin/CategoryList";
 import RequireAuth from "../Pages/RequireAuth";
+import RequireTeacherAuth from "../Pages/RequireTeacherAuth";
+
+
 
 
 
@@ -61,14 +64,14 @@ function Base() {
 
 
 
-        <Route path="/admin-login" element={<AdminLogin />} />
+        <Route path="/admin-login" element={<AdminLogin />} /> 
         <Route path="/admin-page" element={<AdminPage />} />
 
         <Route path="/student-register" element={<StudentRegister />} />
         <Route path="/student-login" element={<StudentLogin />} />
         <Route path="/tutor/sidebar" element={<TutorSidebar />} />
-        <Route path="/tutor/dashboard" element={<TutorDashboard />} />
-        <Route path="/tutor/addcourse" element={<AddCource />} />
+        <Route path="/tutor/dashboard" element={ <RequireTeacherAuth >  <TutorDashboard /> </RequireTeacherAuth>} />
+        <Route path="/tutor/addcourse" element={<RequireTeacherAuth > <AddCource /></RequireTeacherAuth>} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/admin/users/" element={<AddUsers />} />
         <Route path="/admin/tutors/" element={<AddTutors />} />
@@ -82,64 +85,21 @@ function Base() {
         <Route path="/tutor/all-chapters/:course_id" element={<AllChapters />} />
         <Route path="/tutor/edit-chapter/:chapter_id" element={<EditChapter />} />
         <Route path="/tutor/edit-course/:course_id" element={<EditCource />} />
-        <Route path="/tutor/profile" element={<TeacherProfile />} />
+        <Route path="/tutor/profile" element={<RequireTeacherAuth ><TeacherProfile /></RequireTeacherAuth>} />
         <Route path="/student" element={<StudentSidebar />} />
-        <Route path="/student-dsb" element={<StudentDashboard /> } />
+        <Route path="/student-dsb" element={<RequireAuth> <StudentDashboard /></RequireAuth> } />
         <Route path="tutor/chat" element={<TutorChat />} />
         <Route path="tutor/studentlist" element={<TutorMyStudent />} />
-        <Route path="/student-courselist" element={<StudentCourses />} />
-        <Route path="/student-teacherlist" element={<StudentTeachers />} />
+        <Route path="/student-courselist" element={<RequireAuth> <StudentCourses /></RequireAuth>} />
+        <Route path="/student-teacherlist" element={<RequireAuth> <StudentTeachers /></RequireAuth>} />
         <Route path="/student-logout" element={<StudentLogout />} />
-        <Route path="/student-profile" element={<StudentProfile />} />
-        <Route path="/student-myCource" element={<StudentCourceList />} />
-
-
+        <Route path="/student-profile" element={<RequireAuth> <StudentProfile /></RequireAuth>} />
+        <Route path="/student-myCource" element={<RequireAuth> <StudentCourceList /></RequireAuth>} />
 
          {/* payment */}
-        <Route path="/payment" element={<Payment/>} />
+        <Route path="/payment" element={<RequireAuth><Payment/> </RequireAuth>} />
         <Route path="/payment/success" element={<PaymentSuccess/>} />
         <Route path="/test" element={<Test/>} />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
       </Routes>

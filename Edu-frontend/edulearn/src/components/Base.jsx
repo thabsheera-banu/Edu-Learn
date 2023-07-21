@@ -84,7 +84,7 @@ function Base() {
         <Route path="/tutor/edit-course/:course_id" element={<EditCource />} />
         <Route path="/tutor/profile" element={<TeacherProfile />} />
         <Route path="/student" element={<StudentSidebar />} />
-        <Route path="/student-dsb" element={<RequireAuth><StudentDashboard /></RequireAuth> } />
+        <Route path="/student-dsb" element={<StudentDashboard /> } />
         <Route path="tutor/chat" element={<TutorChat />} />
         <Route path="tutor/studentlist" element={<TutorMyStudent />} />
         <Route path="/student-courselist" element={<StudentCourses />} />

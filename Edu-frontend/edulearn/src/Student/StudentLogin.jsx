@@ -108,6 +108,8 @@ function StudentLogin() {
                     {/* <input className="form-check-input" type="checkbox" value="" id="form1Example3" /> */}
 
                     <label className="form-check-label" htmlFor="form1Example3">Dont have an Account pls Login here ....  <Link to="/student-register"> Register </Link></label>
+                    <label className="form-check-label" htmlFor="form1Example3">Are you a teacher  ....  <Link to="/teacher-login"> Teacher Login </Link></label>
+
                   </div>
 
                   <button onClick={submitForm}

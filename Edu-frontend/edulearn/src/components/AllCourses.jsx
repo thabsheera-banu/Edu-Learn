@@ -14,7 +14,7 @@ function AllCourses() {
         fetchdata(baseurl)
       }, []);
 
-    const paginationhandler = (url)=>{
+    const paginationhandler = (url )=>{
       fetchdata(url)
       
 
@@ -87,6 +87,7 @@ function AllCourses() {
               
                 </li>
                   )}
+
                   {next &&(
                 <li className="page-item">
                 <button onClick={()=>paginationhandler(next)} className="page-link"  aria-label="Next">

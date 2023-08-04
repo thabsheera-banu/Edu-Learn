@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import TutorSidebar from './TutorSidebar'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import axios from 'axios'
 import BaseUrl from '../BaseUrl'
 import { IconButton } from '@mui/material';
@@ -9,11 +9,14 @@ import EditIcon from '@mui/icons-material/Edit';
 import {Link} from 'react-router-dom'
 import Button from '@mui/material/Button';
 import Pagination from '../components/Pagination'
+import { Card, CardContent, Typography} from '@material-ui/core';
+
 
 
 
 
 function CourseChapters() {
+    const navigate = useNavigate()
     const [chapterData,setchapterData] = useState([])
     const [totalResult,settotalResult] = useState(0)
     const {course_id} = useParams()
@@ -90,6 +93,18 @@ function CourseChapters() {
 
             </aside>
             <section className='col-md-9'>
+            {chapterData.length === 0 ? (
+                        <div className="col-md-12 text-center ">
+                        <Card className='mt-5'>
+                            <CardContent>
+                                <Typography variant="h6">No video available here .</Typography>
+                                <Button variant="contained" color="primary" onClick={() => { navigate('/add-chapter/'+ course_id) }}>
+                                    Add Chapter
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    </div>
+                    ):(
                 <div className='card'>
                     <h5 className='card-header'>All Chapters ({totalResult}) 
                                <Link to = {'/add-chapter/'+ course_id}>
@@ -98,6 +113,7 @@ function CourseChapters() {
                                         </Button>
                                     </Link>  
                     </h5>
+                    
                     <div className='card-body'>
                         <table className='table'>
                             <thead>
@@ -151,9 +167,10 @@ function CourseChapters() {
                         </table>
 
                     </div>
+                  
 
                 </div>
-
+  )}
             </section>
             <Pagination totalPosts={chapterData.length} 
         postsPerPage={postsPerPage}

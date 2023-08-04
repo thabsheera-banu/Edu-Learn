@@ -4,6 +4,7 @@ import './teacher.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 import BaseUrl from '../BaseUrl';
+import { Link } from 'react-router-dom';
 
 
 function TeacherRegister() {
@@ -64,9 +65,15 @@ function TeacherRegister() {
 
 
   return (
-    <div className="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
-      <div className="wrapper wrapper--w680">
-        <div className="card card-4">
+    <div className="page-wrapper  p-t-130 p-b-100 font-poppins "
+    style={{
+      // backgroundColor:'#7F7F7F',
+      backgroundImage: "url('b11.jpg')",
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    }}>
+      <div className="wrapper wrapper--w680 ">
+        <div className="card card-4 ">
 
 
           <div className="card-body">
@@ -89,14 +96,14 @@ function TeacherRegister() {
                 )} */}
                 <div className="col-2">
                   <div className="input-group">
-                    <label className="label">Full name</label>
-                    <input onChange={(e) => setFull_name(e.target.value)} value={full_name} className="input--style-4" type="text" name="full_name" />
+                    {/* <label className="label">Full name</label> */}
+                    <input onChange={(e) => setFull_name(e.target.value)} value={full_name} className="input--style-4" type="text" name="full_name" placeholder='FullName' />
                   </div>
                 </div>
                 <div className="col-2">
                   <div className="input-group">
-                    <label className="label">Email</label>
-                    <input onChange={(e) => setEmail(e.target.value)} value={email} className="input--style-4" type="email" name="email" />
+                    {/* <label className="label">Email</label> */}
+                    <input onChange={(e) => setEmail(e.target.value)} value={email} className="input--style-4" type="email" name="email" placeholder='Email' />
                   </div>
                 </div>
               </div>
@@ -105,34 +112,37 @@ function TeacherRegister() {
               <div className="row row-space">
                 <div className="col-2">
                   <div className="input-group">
-                    <label className="label">Password</label>
-                    <input onChange={(e) => setPassword(e.target.value)} value={password} className="input--style-4" type="password" name="password" />
+                    {/* <label className="label">Password</label> */}
+                    <input onChange={(e) => setPassword(e.target.value)} value={password} className="input--style-4" type="password" name="password" placeholder='password' />
                   </div>
                 </div>
                 <div className="col-2">
                   <div className="input-group">
-                    <label className="label">Qualification</label>
-                    <input onChange={(e) => setQualification(e.target.value)} value={qualification} className="input--style-4" type="text" name="qualification" />
+                    {/* <label className="label">Qualification</label> */}
+                    <input onChange={(e) => setQualification(e.target.value)} value={qualification} className="input--style-4" type="text" name="qualification" placeholder='Qualification' />
                   </div>
                 </div>
               </div>
               <div className="row row-space">
                 <div className="col-2">
                   <div className="input-group">
-                    <label className="label">Mobile</label>
-                    <input onChange={(e) => setMobile_no(e.target.value)} value={mobile_no} className="input--style-4" type="number" name="mobile_no" />
+                    {/* <label className="label">Mobile</label> */}
+                    <input onChange={(e) => setMobile_no(e.target.value)} value={mobile_no} className="input--style-4" type="number" name="mobile_no" placeholder='Mobile' />
                   </div>
                 </div>
                 <div className="col-2">
                   <div className="input-group">
-                    <label className="label">skills</label>
-                    <input onChange={(e) => setSkills(e.target.value)} value={skills} className="input--style-4" type="text" name="skills" />
+                    {/* <label className="label">skills</label> */}
+                    <input onChange={(e) => setSkills(e.target.value)} value={skills} className="input--style-4" type="text" name="skills" placeholder='skills' />
                   </div>
                 </div>
               </div>
 
               <div className="p-t-15">
                 <button onClick={submitForm} className="btn btn--radius-2 btn--blue" >Register</button>
+              </div>
+              <div className='mt-3'>
+              <label className="form-check-label" htmlFor="form1Example3">Already Login ...<Link to="/teacher-login">Login</Link></label>
               </div>
             </form>
           </div>

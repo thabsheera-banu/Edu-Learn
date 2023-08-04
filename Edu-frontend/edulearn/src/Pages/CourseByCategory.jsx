@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import axios from 'axios'
 import BaseUrl from '../BaseUrl'
+import { Card, CardContent, Typography, Button } from '@material-ui/core';
 
 function CourseByCategory() {
+    const navigate = useNavigate()
     const [courseData,setCourseData] = useState([])
     const {category_id} = useParams()
     useEffect(()=>{
@@ -22,9 +24,22 @@ function CourseByCategory() {
     <div>
       <Navbar/>
     <div className="container mt-4">
-        <h3 className="pb-1 mb-4">Latest Courses </h3>
+        <h3 className="pb-1 mb-4">Latest Categories  </h3>
         <div className="row">
-        {courseData && courseData.map((cate,index)=>{return(
+        {courseData.length === 0 ? (
+                        <div className="col-md-12 text-center">
+                        <Card>
+                            <CardContent>
+                                <Typography variant="h6">No data available.</Typography>
+                                <Button variant="contained" color="primary" onClick={() => { navigate('/category') }}>
+                                    Retry
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    </div>
+                    ) : (
+          
+         courseData.map((cate,index)=>{return(
             <div className="col-md-3 mb-4" key={index}>
             <div className="card" >
                 <Link to={"/detail/"+cate.id}><img src={cate.img} className="card-img-top" alt="..."/></Link>
@@ -47,7 +62,9 @@ function CourseByCategory() {
 
             </div>
             </div>
-              )})}
+              )
+            })
+                    )}
 
             
 

@@ -4,10 +4,14 @@ import { useEffect,useState } from 'react'
 import axios from 'axios'
 import BaseUrl from '../BaseUrl'
 import Navbar from '../components/Navbar';
+import { Card, CardContent, Typography,Button} from '@material-ui/core';
+
 
 
 function Search() {
     const[course,setCourse]=useState([])
+    const [next,setnext] = useState()
+    const [previous,setPrevious] = useState()
     const {searchstring} = useParams()
     useEffect(() => {
       const fetchData = async () => {
@@ -29,7 +33,18 @@ function Search() {
     <div>
       <Navbar/>
     <div className="container mt-4">
-    <h3 className="pb-1 mb-4">Latest Courses </h3>
+    <h3 className="pb-1 mb-4"></h3>
+    {course.length === 0 ? ( // Check if the course array is empty
+    <div className="col-md-12 text-center ">
+                        <Card className='mt-5'>
+                            <CardContent>
+                                <Typography variant="h6">No Search data .</Typography>
+                                <Button variant="contained" color="primary" >
+                                    Search Again
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    </div>        ) : (
         <div className="row">
           
         {  course && course.map((cate,index)=>{return(
@@ -66,7 +81,7 @@ function Search() {
             
 
         </div>
-
+        )}
 
         {/* pagination start */}
 

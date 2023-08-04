@@ -57,11 +57,11 @@ function TeacherLogin() {
   }
 
   return (
-    <section className="vh-100 " style={{ backgroundImage: "url('')", backgroundSize: 'cover' ,  backdropFilter: 'blur(5px)' ,backgroundColor:'#9370DB'  }}>
+    <section className="vh-100 " style={{ backgroundImage: "url('b11.jpg')", backgroundSize: 'cover' ,  backdropFilter: 'blur(5px)'   }}>
       <div className="container py-5 h-100">
-        <div className="row d-flex justify-content-center align-items-center h-100">
+        <div className="row d-flex justify-content-start align-items-center h-100">
           <div className="col-12 col-md-8 col-lg-6 col-xl-5" >
-            <div className="card shadow-2-strong  " style={{backgroundImage: "url('')" ,backgroundSize: 'cover'  ,borderWidth: '2px', borderColor: 'white', borderRadius: '10px'}}>
+            <div className="card shadow-2-strong  " style={{backgroundImage: "url('b8.jpg')" ,backgroundSize: 'cover'  ,borderWidth: '2px', borderColor: 'white', borderRadius: '10px'}}>
               <div className="card-body p-5 text-center">
                 <h3 className="mb-5"> Teacher Sign in</h3>
                 <Link to='/'>
@@ -96,7 +96,7 @@ function TeacherLogin() {
                   </div>
 
                   <div className="form-check d-flex justify-content-start mb-4">
-                    <label className="form-check-label" htmlFor="form1Example3">Dont have an Account pls ...<Link to="/teacher-register">Register</Link></label>
+                    <label className="form-check-label" htmlFor="form1Example3"  >Dont have an Account pls ...<Link  to="/teacher-register" style={{ color: '#FFFFFF' }}>Register</Link></label>
                   </div>
 
                   <button
@@ -107,7 +107,6 @@ function TeacherLogin() {
                     Login
                   </button>
 
-                  <hr className="my-4" />
                 </div>
               </div>
             </div>

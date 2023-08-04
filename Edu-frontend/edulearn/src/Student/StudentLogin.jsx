@@ -56,24 +56,18 @@ function StudentLogin() {
   
   return (
     <section className="vh-100"
-    style={{
-      backgroundImage: "url('c1.jpg')",
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-    }}>
+    style={{ backgroundImage: "url('b11.jpg')", backgroundSize: 'cover' ,  backdropFilter: 'blur(5px)'   }}>
       <div className="container py-5 h-100">
-        <div className="row d-flex justify-content-center align-items-center h-100">
-          <div className="col-12 col-md-8 col-lg-6 col-xl-5">
-            <div className="card shadow-2-strong"
-            style={{
-              backgroundColor: 'transparent',
-            }}
+        <div className="row d-flex justify-content-start align-items-center h-100">
+          <div className="col-12 col-md-8 col-lg-6 col-xl-5 ">
+            <div className="card shadow-2-strong  "
+            style={{backgroundImage: "url('b8.jpg')" ,backgroundSize: 'cover'  ,borderWidth: '2px', borderColor: 'white', borderRadius: '10px'}}
             >
               <div className="card-body p-5 text-center">
                 <Link to='/'>
               <img src="logo.png" alt="Logo" style={{ marginBottom: '20px', maxWidth: '50px' }} />
               </Link>
-                <h3 className="mb-5 text-white">Student Login</h3>
+                <h3 className="mb-5 text-dark">Student Login</h3>
                 <div>
                 {error && (
                   <div className="alert alert-danger" role="alert">
@@ -106,12 +100,11 @@ function StudentLogin() {
                     <label className="form-label" htmlFor="typePasswordX-2">Password</label>
                   </div>
 
-                  <div className="form-check d-flex justify-content-start mb-4">
+                  <div className="form-check  justify-content-start mb-4">
                     {/* <input className="form-check-input" type="checkbox" value="" id="form1Example3" /> */}
 
-                    <label className="form-check-label" htmlFor="form1Example3">Dont have an Account pls Login here ....  <Link to="/student-register"> Register </Link></label>
-                    <br />
-                    <label className="form-check-label" htmlFor="form1Example3">Are you a teacher  ....  <Link to="/teacher-login"> Teacher Login </Link></label>
+                    <label className="form-check-label" htmlFor="form1Example3">Dont have an Account pls Login here ....  <Link to="/student-register"style={{ color: '#FFFFFF' }}> Register </Link></label>
+                    <label className="form-check-label" htmlFor="form1Example3">Are you a teacher  ....  <Link to="/teacher-login"style={{ color: '#FFFFFF' }}> Teacher Login </Link></label>
                   </div>
 
                   <button onClick={submitForm}
@@ -122,7 +115,6 @@ function StudentLogin() {
                     Login
                   </button>
 
-                  <hr className="my-4" />
                 </div>
               </div>
             </div>

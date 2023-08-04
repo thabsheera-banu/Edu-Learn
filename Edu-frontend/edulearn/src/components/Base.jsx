@@ -81,7 +81,7 @@ function Base() {
 
 
         <Route path="/tutor/course" element={<TutorCourses />} />
-        <Route path="/add-chapter/:course_id" element={<AddChapter />} />
+        <Route path="/add-chapter/:course_id" element={<RequireTeacherAuth ><AddChapter /></RequireTeacherAuth>} />
         <Route path="/tutor/all-chapters/:course_id" element={<AllChapters />} />
         <Route path="/tutor/edit-chapter/:chapter_id" element={<EditChapter />} />
         <Route path="/tutor/edit-course/:course_id" element={<EditCource />} />

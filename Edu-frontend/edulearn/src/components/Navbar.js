@@ -11,8 +11,9 @@ function Navbar(props) {
   const teacherloginStatus = localStorage.getItem('teacherloginStatus')
   const name = localStorage.getItem('name')
   const teacher = localStorage.getItem('teacher')
-  
+  const [isScrolled, setIsScrolled] = useState(false);
   const [showTextField, setShowTextField] = useState(false);
+  const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const [searchString, setSearchString] = useState({
     'search': ''
   }
@@ -34,30 +35,28 @@ function Navbar(props) {
 
     })
   };
-
+  const handleScroll = () => {
+    setIsScrolled(window.scrollY > 100);
+  };
   useEffect(() => {
-    const handleScroll = () => {
-      const navbar = document.getElementById("navbar");
-      if (navbar) {
-        const scrollTop = window.pageYOffset;
-        if (scrollTop > 0) {
-          navbar.classList.add("scrolled");
-        } else {
-          navbar.classList.remove("scrolled");
-        }
-      }
-    };
-
     window.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  
+  
 
   return (
-    <nav id="navbar" className={`navbar navbar-expand-lg  bg-transparent ${props.home ? "fixed-top" : "shadow"} `} style={{ height: "80px" }}>
-
+    // <nav id="navbar" className={`navbar navbar-expand-lg  bg-transparent ${props.home ? "fixed-top" : "shadow"} `} style={{ height: "80px" }}>
+<nav
+      id="navbar"
+      className={`navbar navbar-expand-lg ${
+        isScrolled ? "bg-white" : "bg-transparent"
+      } ${props.home ? "fixed-top" : "shadow"}`}
+      style={{ height: "80px" }}
+    >
       {/* <nav className="navbar navbar-expand-lg navbar-dark bg-dark   "> */}
       <div className="container">
         <Link className="navbar-brand " to="/">EduLearn</Link>

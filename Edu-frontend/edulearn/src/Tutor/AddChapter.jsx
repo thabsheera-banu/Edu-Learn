@@ -58,7 +58,7 @@ function AddChapter() {
             console.log(res.data);
             // Show success Swal alert
             Swal.fire('Success', 'Chapter added successfully!', 'success').then(() => {
-              window.location.href = '/add-chapter/4';
+              // window.location.href = '/add-chapter/4';
             });
           });
         } catch (error) {
@@ -100,7 +100,7 @@ function AddChapter() {
                                 <label for='techs' className="form-label">Remarks</label>
                                 <textarea placeholder='php,python,javascripts' onChange={handleChange} name="remarks" className="form-control"></textarea>  
                             </div>
-                            <button type='sumbit' onClick={FormSubmit} className="btn btn-primary">Add Chapter</button>
+                            <button type='submit' onClick={FormSubmit} className="btn btn-primary">Add Chapter</button>
                         </form>
                     </div>
 

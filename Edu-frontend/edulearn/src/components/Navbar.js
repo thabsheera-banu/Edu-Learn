@@ -91,7 +91,7 @@ function Navbar(props) {
 ) : teacherloginStatus && !loginstatus ? (
   <li className="nav-item dropdown">
     {teacherloginStatus === 'true' ? (
-      <Link className="nav-link" to="/tutor/dashboard">{teacher}</Link>
+      <Link className="nav-link" to="/tutor/dashboard">dashboard</Link>
     ) : (
       <Link className="nav-link" to="/teacher-login">Login</Link>
     )}
@@ -99,7 +99,7 @@ function Navbar(props) {
 ) : (
   <li className="nav-item">
     {loginstatus === 'true' ? (
-      <Link className="nav-link" to="/student-dsb">{name}</Link>
+      <Link className="nav-link" to="/student-dsb">dashboard</Link>
     ) : (
       <Link className="nav-link" to="/student-login">Login</Link>
     )}

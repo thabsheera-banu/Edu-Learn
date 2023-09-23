@@ -1,21 +1,21 @@
 import Axios from "axios";
 import React, { useContext, useState } from "react";
 
-import { Navigate,  useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { Navbar } from "react-bootstrap";
 import BaseUrl from "../BaseUrl";
 
 function Payment() {
-    
-    const navigate = useNavigate()
-    const state  = useLocation();
-    const student_id = localStorage.getItem('StudentId')
-    const [courseID, setCourse] = useState(state.state?.course_id);
-    const [amount, setAmount] = useState(state.state?.amount);
-    const [name, setName] = useState(state.state?.name);
 
-// this function will handel payment when user submit his/her money
-// and it will confim if payment is successfull or not
+  const navigate = useNavigate()
+  const state = useLocation();
+  const student_id = localStorage.getItem('StudentId')
+  const [courseID, setCourse] = useState(state.state?.course_id);
+  const [amount, setAmount] = useState(state.state?.amount);
+  const [name, setName] = useState(state.state?.name);
+
+  // this function will handel payment when user submit his/her money
+  // and it will confim if payment is successfull or not
   const handlePaymentSuccess = async (response) => {
     try {
       let bodyData = new FormData();
@@ -36,8 +36,8 @@ function Payment() {
           console.log("Everything is OK!");
           setCourse("");
           setAmount("");
-          navigate('/payment/success',{ state: { course_id: courseID} })
-          
+          navigate('/payment/success', { state: { course_id: courseID } })
+
         })
         .catch((err) => {
           console.log(err);
@@ -63,7 +63,7 @@ function Payment() {
     bodyData.append("amount", amount);
     bodyData.append("course_id", courseID);
     bodyData.append("student_id", student_id);
-    
+
 
 
     const data = await Axios({
@@ -83,7 +83,7 @@ function Payment() {
 
     var options = {
       key_id: 'rzp_test_YRIPc7w7gPnCKk', // in react your environment variable must start with REACT_APP_
-      key_secret:'4jU1cEQdGjRZkZJh52BL9LUf',
+      key_secret: '4jU1cEQdGjRZkZJh52BL9LUf',
       amount: data.data.payment.amount,
       currency: "INR",
       name: "EduLearn",
@@ -114,45 +114,45 @@ function Payment() {
 
   console.log(state);
   console.log(student_id);
-//   return (
-    
-//     <div style={{minHeight:'100vh'}}>
-//       <Navbar/>
-//     <div className="container " style={{ marginTop: "20vh" }}>
-//       <form>
-//         <h1>Summary</h1>
+  //   return (
 
-//         <div className="form-group mt-2">
-          
-//           <span>Product Name:</span><span>{name}</span>
-//         </div>
-//         <div className="form-group mt-2" >
-//         <span>Product price:</span><span>{amount}</span>
+  //     <div style={{minHeight:'100vh'}}>
+  //       <Navbar/>
+  //     <div className="container " style={{ marginTop: "20vh" }}>
+  //       <form>
+  //         <h1>Summary</h1>
 
-         
-//         </div>
-//       </form>
-//       <button onClick={showRazorpay} className="btn btn-primary btn-block mt-2"  style={{width:'25%',backgroundColor:'#a435f0',border:'#a435f0'}}>
-//         Pay with razorpay
-//       </button>
-//     </div>
-//     </div>
-//   );
-// }
-return (
-  <div style={{ minHeight: "100vh" }}>
-    <Navbar />
-    <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: "80vh" }}>
-      <div className="card p-4 shadow" style={{ width: "300px" }}>
-        <form>
-          <h1 className="mb-4">Summary</h1>
+  //         <div className="form-group mt-2">
 
-          <div className="form-group mt-2">
-            <span className="font-weight-bold">Product Name:</span> <span>{name}</span>
-          </div>
-          <div className="form-group mt-2">
-            <span className="font-weight-bold">Product Price:</span> <span>{amount}</span>
-          </div>
+  //           <span>Product Name:</span><span>{name}</span>
+  //         </div>
+  //         <div className="form-group mt-2" >
+  //         <span>Product price:</span><span>{amount}</span>
+
+
+  //         </div>
+  //       </form>
+  //       <button onClick={showRazorpay} className="btn btn-primary btn-block mt-2"  style={{width:'25%',backgroundColor:'#a435f0',border:'#a435f0'}}>
+  //         Pay with razorpay
+  //       </button>
+  //     </div>
+  //     </div>
+  //   );
+  // }
+  return (
+    <div style={{ minHeight: "100vh" }}>
+      <Navbar />
+      <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: "80vh" }}>
+        <div className="card p-4 shadow" style={{ width: "300px" }}>
+          <form>
+            <h1 className="mb-4">Summary</h1>
+
+            <div className="form-group mt-2">
+              <span className="font-weight-bold">Product Name:</span> <span>{name}</span>
+            </div>
+            <div className="form-group mt-2">
+              <span className="font-weight-bold">Product Price:</span> <span>{amount}</span>
+            </div>
           </form>
 
           <button
@@ -162,10 +162,10 @@ return (
           >
             Pay with Razorpay
           </button>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
 }
 
 export default Payment;

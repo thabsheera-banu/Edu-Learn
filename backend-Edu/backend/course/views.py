@@ -162,27 +162,19 @@ class MyTeacherList(generics.ListAPIView):
 def start_payment(request):
     
     print(request.data)
-     # request.data is coming from frontend
     amount = request.data['amount']
     course_id = request.data['course_id']
     student_id =request.data['student_id']
 
-    # setup razorpay client this is the client to whome user is paying money that's you
     client =  razorpay.Client(auth=(settings.PUBLIC_KEY , settings.SECRET_KEY ))
     print('****')
 
-    # create razorpay order
-    # the amount will come in 'paise' that means if we pass 50 amount will become
-    # 0.5 rupees that means 50 paise so we have to convert it in rupees. So, we will 
-    # mumtiply it by 100 so it will be 50 rupees.
+    
     payment = client.order.create({"amount": int(amount) * 100, 
                                    "currency": "INR", 
                                    "payment_capture": "1"})
     print(payment)
-    # we are saving an order with isPaid=False because we've just initialized the order
-    # we haven't received the money we will handle the payment succes in next 
-    # function
-   
+    
     course =Course.objects.get(pk=course_id)
     student =Student.objects.get(pk=student_id)
     order = StudentCourseEntrollment.objects.create(course=course, 
@@ -239,10 +231,8 @@ def handle_payment_success(request):
         elif key == 'razorpay_signature':
             raz_signature = res[key]
     print(ord_id,"loooooo")
-    # get order by payment_id which we've created earlier with isPaid=False
     order = StudentCourseEntrollment.objects.get(order_payment_id=ord_id)
 
-    # we will pass this whole data in razorpay client to verify the payment
     data = {
         'razorpay_order_id': ord_id,
         'razorpay_payment_id': raz_pay_id,
@@ -251,16 +241,15 @@ def handle_payment_success(request):
 
     client = razorpay.Client(auth=(settings.PUBLIC_KEY , settings.SECRET_KEY ))
 
-    # checking if the transaction is valid or not by passing above data dictionary in 
-    # razorpay client if it is "valid" then check will return None
+    
     check = client.utility.verify_payment_signature(data)
     print(check)
     print(order,'ordo')
     if check is None:
         print("Redirect to error url or error page")
         return Response({'error': 'Something went wrong'})
+    
 
-    # if payment is successful that means check is None then we will turn isPaid=True
     order = StudentCourseEntrollment.objects.get(order_payment_id=ord_id)
     order.isPaid = True
     
